@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Immuna — Join the waitlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal: #1E3B36;
+    --teal-soft: #2C4F49;
+    --cream: #FAF1DE;
+    --card: #FFFFFF;
+    --tan: #EFE3C8;
+    --terracotta: #C97A45;
+    --terracotta-deep: #B4652F;
+    --warning-bg: #F3E4C4;
+    --warning-border: #E0B978;
+    --ink: #1E3B36;
+    --muted: #5B6B65;
+    --line: rgba(30,59,54,0.14);
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap{ max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+  h1, h2, h3{
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    margin: 0;
+    color: var(--teal);
+  }
+
+  .mono{
+    font-family: 'IBM Plex Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12.5px;
+    color: var(--muted);
+  }
+
+  /* ---------- Header ---------- */
+  header{ padding: 32px 0 0; }
+  .header-row{ display:flex; align-items:center; justify-content:space-between; }
+  .wordmark{ font-family:'Playfair Display', serif; font-weight: 700; font-size: 23px; color: var(--teal); }
+  nav a{ color: var(--muted); text-decoration:none; font-size: 14px; margin-left: 28px; }
+  nav a:hover{ color: var(--teal); }
+
+  /* ---------- Hero (centered, template-style) ---------- */
+  .hero{
+    padding: 56px 0 20px;
+    text-align: center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  h1.headline{
+    font-size: clamp(36px, 5.6vw, 60px);
+    line-height: 1.1;
+    max-width: 14ch;
+    margin-top: 14px;
+  }
+  .sub{
+    margin-top: 18px;
+    max-width: 44ch;
+    color: var(--muted);
+    font-size: 17px;
+  }
+
+  .capture{
+    margin-top: 30px;
+    display:flex;
+    gap: 10px;
+    max-width: 440px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content:center;
+  }
+  .capture input[type="email"]{
+    flex: 1 1 230px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .capture input[type="email"]:focus{ outline: 2px solid var(--teal); outline-offset: 1px; }
+  .capture button{
+    padding: 14px 24px;
+    border-radius: 8px;
+    border: none;
+    background: var(--teal);
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    white-space: nowrap;
+  }
+  .capture button:hover{ background: var(--teal-soft); }
+  .capture-note{ margin-top: 10px; font-size: 13px; color: var(--muted); }
+
+  /* ---------- Phone stage with floating cards ---------- */
+  .phone-stage-wrap{
+    width: 100%;
+    display:flex;
+    justify-content:center;
+    overflow: hidden;
+    margin-top: 56px;
+  }
+  .phone-stage{
+    position: relative;
+    width: 820px;
+    flex-shrink: 0;
+    display:flex;
+    justify-content:center;
+    transform-origin: top center;
+  }
+  .phone{
+    position: relative;
+    width: 280px;
+    background: var(--cream);
+    border-radius: 34px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(30,59,54,0.28);
+    border: 6px solid var(--teal);
+    text-align: left;
+  }
+  .phone-topbar{
+    background: var(--teal);
+    padding: 16px 16px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .phone-topbar .wm{ color: var(--cream); font-family:'Playfair Display', serif; font-size: 16px; font-weight:600; }
+  .phone-body{ padding: 16px 16px 10px; }
+  .phone .mono{ font-size: 9.5px; color: var(--muted); }
+  .phone-greeting{ font-family:'Playfair Display', serif; font-size: 21px; font-weight:700; color: var(--ink); margin: 4px 0 2px; line-height:1.15; }
+  .phone-welcome{ font-size: 11.5px; color: var(--muted); margin-bottom: 12px; }
+  .phone-banner{
+    background: var(--warning-bg);
+    border: 1px solid var(--warning-border);
+    border-radius: 10px;
+    padding: 9px 11px;
+    font-size: 10.5px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    display:flex; align-items:center; gap:7px;
+  }
+  .phone-checkin{
+    background: var(--teal);
+    border-radius: 12px;
+    padding: 13px;
+    margin-bottom: 10px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .phone-checkin .icon-box{ width:32px; height:32px; border-radius:8px; background: var(--teal-soft); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .phone-checkin .lbl{ color: var(--cream); font-size: 13.5px; font-weight: 600; font-family:'Playfair Display', serif; line-height:1.2; }
+  .phone-checkin .sub2{ color: rgba(250,241,222,0.7); font-size: 10px; margin-top:2px; }
+
+  .app-card{
+    background: var(--card);
+    border-radius: 11px;
+    padding: 11px;
+    margin-bottom: 8px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .app-card:last-child{ margin-bottom: 0; }
+  .app-card .icon-box{ width:30px; height:30px; border-radius:8px; background: var(--tan); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .app-card .t{ font-family:'Playfair Display', serif; font-size: 13px; font-weight:600; color: var(--ink); line-height:1.2; }
+  .app-card .d{ font-size: 10px; color: var(--muted); margin-top:1px; }
+  .app-card .arrow{ margin-left:auto; color: var(--muted); }
+
+  .float-card{
+    position:absolute;
+    background: var(--card);
+    border-radius: 12px;
+    padding: 13px 15px;
+    box-shadow: 0 14px 30px rgba(30,59,54,0.14);
+    display:flex;
+    align-items:center;
+    gap: 10px;
+    width: 210px;
+  }
+  .float-card .icon{ width: 32px; height: 32px; border-radius: 8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background: var(--tan); }
+  .float-title{ font-family:'Playfair Display', serif; font-weight:600; font-size: 14px; color: var(--teal); line-height:1.2; }
+  .float-sub{ font-size: 11px; color: var(--muted); margin-top:1px; }
+
+  .float-1{ top: 4%; left: 0; }
+  .float-1 .icon{ background: var(--teal); }
+  .float-2{ top: 30%; right: 0; }
+  .float-2 .icon{ background: var(--terracotta); }
+  .float-3{ top: 56%; left: 0; }
+  .float-3 .icon{ background: var(--teal-soft); }
+  .float-4{ top: 80%; right: 0; }
+  .float-4 .icon{ background: var(--tan); }
+
+  @media (max-width: 780px){
+    nav{ display:none; }
+  }
+
+  /* ---------- Divider ---------- */
+  .stitch{ height: 1px; background: var(--line); margin: 10px 0 0; }
+
+  /* ---------- Features ---------- */
+  .features{ padding: 70px 0 70px; }
+  .features h2{ font-size: clamp(26px, 3vw, 34px); max-width: 16ch; margin-bottom: 44px; }
+  .feature-list{ display:flex; flex-direction: column; }
+  .feature-row{
+    display:grid; grid-template-columns: 52px 1fr; gap: 20px;
+    padding: 24px 0; border-top: 1px solid var(--line); align-items: flex-start;
+  }
+  .feature-row:last-child{ border-bottom: 1px solid var(--line); }
+  .feature-icon{ width: 46px; height: 46px; border-radius: 9px; background: var(--tan); display:flex; align-items:center; justify-content:center; }
+  .feature-row h3{ font-size: 19px; font-weight: 600; margin-bottom: 6px; }
+  .feature-row p{ margin:0; color: var(--muted); max-width: 52ch; font-size: 15.5px; }
+
+  /* ---------- Community ---------- */
+  .community{ padding: 20px 0 80px; display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items:center; }
+  .community h2{ font-size: clamp(26px, 3vw, 34px); max-width: 12ch; }
+  .community p.lede{ margin-top: 18px; color: var(--muted); max-width: 40ch; font-size: 16px; }
+  .network{ width: 100%; height: auto; }
+  @media (max-width: 780px){ .community{ grid-template-columns: 1fr; } }
+
+  /* ---------- Footer ---------- */
+  footer{ border-top: 1px solid var(--line); padding: 30px 0 90px; }
+  .footer-row{ display:flex; justify-content: space-between; align-items:center; flex-wrap: wrap; gap: 14px; }
+  .footer-links a{ color: var(--muted); text-decoration:none; font-size: 13.5px; margin-right: 22px; }
+  .footer-links a:hover{ color: var(--teal); }
+  .footer-meta{ font-size: 13px; color: var(--muted); }
+
+  /* ---------- Cookie banner ---------- */
+  #cookieBanner{
+    display:none;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: var(--teal);
+    color: var(--cream);
+    padding: 18px 24px;
+    z-index: 999;
+    align-items:center;
+    justify-content:center;
+    gap: 24px;
+    flex-wrap: wrap;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.15);
+  }
+  #cookieBanner p{ margin:0; font-size: 14px; max-width: 520px; color: rgba(250,241,222,0.9); }
+  .cookie-actions{ display:flex; gap: 10px; flex-wrap: wrap; }
+  .cookie-actions button{
+    font-family:'Inter', sans-serif; font-size: 14px; font-weight: 600;
+    padding: 10px 18px; border-radius: 7px; cursor: pointer; border: 1.5px solid var(--cream);
+  }
+  #cookieEssential{ background: transparent; color: var(--cream); }
+  #cookieEssential:hover{ background: rgba(250,241,222,0.1); }
+  #cookieAccept{ background: var(--cream); color: var(--teal); }
+  #cookieAccept:hover{ background: #fff; }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="header-row">
+    <div class="wordmark">Immuna</div>
+    <nav>
+      <a href="#features">What it does</a>
+      <a href="#community">Community</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero wrap">
+  <div class="mono">Coming soon</div>
+  <h1 class="headline">Your health. Your journey. Your control.</h1>
+  <p class="sub">Immuna is a place to log your symptoms, manage appointments and medication, and find people living the same chapter you are.</p>
+
+  <form class="capture" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You\'re on the list';">
+    <input type="email" placeholder="you@email.com" required aria-label="Email address">
+    <button type="submit">Join the waitlist</button>
+  </form>
+  <div class="capture-note">No spam — you'll get one email the day we open.</div>
+
+  <div class="phone-stage-wrap">
+  <div class="phone-stage" id="phoneStage">
+    <div class="phone">
+      <div class="phone-topbar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><line x1="3" y1="6" x2="21" y2="6" stroke="var(--cream)" stroke-width="2" stroke-linecap="round"/><line x1="3" y1="12" x2="21" y2="12" stroke="var(--cream)" stroke-width="2" stroke-linecap="round"/><line x1="3" y1="18" x2="21" y2="18" stroke="var(--cream)" stroke-width="2" stroke-linecap="round"/></svg>
+        <div class="wm">Immuna</div>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 21s-6-3.6-8-7.5C2.5 10.2 4 6.8 7.2 6.8c1.7 0 3.2 1 3.8 2.4.6-1.4 2.1-2.4 3.8-2.4C18 6.8 19.5 10.2 18 13.5c-2 3.9-6 7.5-6 7.5z" fill="var(--terracotta)"/></svg>
+      </div>
+      <div class="phone-body">
+        <div class="mono">Tuesday 8 September 2026</div>
+        <div class="phone-greeting">Good morning, Eloise.</div>
+        <div class="phone-welcome">Welcome to Immuna</div>
+
+        <div class="phone-banner">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 3l10 18H2z" stroke="var(--terracotta)" stroke-width="1.8" stroke-linejoin="round"/><line x1="12" y1="10" x2="12" y2="14" stroke="var(--terracotta)" stroke-width="1.8"/><circle cx="12" cy="17.5" r="0.9" fill="var(--terracotta)"/></svg>
+          <span><b>Low stock:</b> Prednisone — 3 left</span>
+        </div>
+
+        <div class="phone-checkin">
+          <div class="icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><polyline points="2,12 7,12 10,4 14,20 17,12 22,12" stroke="var(--cream)" stroke-width="1.8" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
+          <div><div class="lbl">Start today's check-in</div><div class="sub2">How are you feeling today?</div></div>
+        </div>
+
+        <div class="app-card">
+          <div class="icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="9" width="16" height="7" rx="3.5" stroke="var(--teal)" stroke-width="1.6"/><line x1="12" y1="9" x2="12" y2="16" stroke="var(--teal)" stroke-width="1.6"/></svg></div>
+          <div><div class="t">Today's Medications</div><div class="d">Add your medications to s...</div></div>
+          <div class="arrow">→</div>
+        </div>
+
+        <div class="app-card">
+          <div class="icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="var(--teal)" stroke-width="1.6"/><line x1="4" y1="10" x2="20" y2="10" stroke="var(--teal)" stroke-width="1.6"/></svg></div>
+          <div><div class="t">Next Appointment</div><div class="d">No upcoming appointments</div></div>
+          <div class="arrow">→</div>
+        </div>
+
+        <div class="app-card">
+          <div class="icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="1.5" stroke="var(--teal)" stroke-width="1.6"/><line x1="9" y1="8" x2="15" y2="8" stroke="var(--teal)" stroke-width="1.4"/><line x1="9" y1="12" x2="15" y2="12" stroke="var(--teal)" stroke-width="1.4"/></svg></div>
+          <div><div class="t">Medications Log</div><div class="d">View doses, side effects &...</div></div>
+          <div class="arrow">→</div>
+        </div>
+
+        <div class="app-card">
+          <div class="icon-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="8" r="2.6" stroke="var(--teal)" stroke-width="1.5"/><circle cx="17" cy="6" r="2.6" stroke="var(--teal)" stroke-width="1.5"/><circle cx="17" cy="17" r="2.6" stroke="var(--teal)" stroke-width="1.5"/><line x1="9.2" y1="7" x2="14.8" y2="6.4" stroke="var(--teal)" stroke-width="1.3"/><line x1="9.2" y1="9" x2="14.8" y2="16" stroke="var(--teal)" stroke-width="1.3"/></svg></div>
+          <div><div class="t">Community</div><div class="d">Find others managing the same condition</div></div>
+          <div class="arrow">→</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="float-card float-1">
+      <div class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4" stroke="var(--cream)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 19h16" stroke="var(--cream)" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+      <div><div class="float-title">Download health reports</div><div class="float-sub">Take a summary to any appointment</div></div>
+    </div>
+
+    <div class="float-card float-2">
+      <div class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="var(--cream)" stroke-width="1.6"/><line x1="4" y1="10" x2="20" y2="10" stroke="var(--cream)" stroke-width="1.6"/><circle cx="9" cy="14.5" r="1.2" fill="var(--cream)"/></svg></div>
+      <div><div class="float-title">Appointment reminder</div><div class="float-sub">Rheumatology — tomorrow, 10am</div></div>
+    </div>
+
+    <div class="float-card float-3">
+      <div class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 16v-5a6 6 0 0 0-12 0v5l-2 2h16l-2-2z" stroke="var(--cream)" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+      <div><div class="float-title">Community alert</div><div class="float-sub">New comment on your post</div></div>
+    </div>
+
+    <div class="float-card float-4">
+      <div class="icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="4" y="9" width="16" height="7" rx="3.5" stroke="var(--terracotta)" stroke-width="1.6"/><line x1="12" y1="9" x2="12" y2="16" stroke="var(--terracotta)" stroke-width="1.6"/></svg></div>
+      <div><div class="float-title">Side effect reported</div><div class="float-sub">Logged against methotrexate</div></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="stitch"></div></div>
+
+<section class="features wrap" id="features">
+  <h2>Five things Immuna helps you carry.</h2>
+  <div class="feature-list">
+
+    <div class="feature-row">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="9" width="16" height="7" rx="3.5" stroke="var(--teal)" stroke-width="1.7"/><line x1="12" y1="9" x2="12" y2="16" stroke="var(--teal)" stroke-width="1.7"/></svg>
+      </div>
+      <div>
+        <h3>Track medications</h3>
+        <p>Log what you take and when, and see the pattern over weeks — not just today.</p>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="5" width="16" height="15" rx="2" stroke="var(--teal)" stroke-width="1.7"/><line x1="4" y1="10" x2="20" y2="10" stroke="var(--teal)" stroke-width="1.7"/><circle cx="9" cy="14.5" r="1.3" fill="var(--teal)"/></svg>
+      </div>
+      <div>
+        <h3>Manage appointments</h3>
+        <p>Keep every specialist, scan, and follow-up in one place, with reminders before they sneak up on you.</p>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.5-9C1 8 3 4 7 4c2 0 4 1.2 5 3 1-1.8 3-3 5-3 4 0 6 4 4.5 8-2.5 4.5-9.5 9-9.5 9z" stroke="var(--terracotta)" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      </div>
+      <div>
+        <h3>Report a flare</h3>
+        <p>A guided, four-step log for symptoms and side effects — quick enough to fill in when you're not feeling your best.</p>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19c0-3 2-5 4-5s4 2 4 5" stroke="var(--teal)" stroke-width="1.7" stroke-linecap="round"/><circle cx="8" cy="9" r="3" stroke="var(--teal)" stroke-width="1.7"/><path d="M15 19c0-2.5 1.5-4.2 3-4.2" stroke="var(--teal)" stroke-width="1.7" stroke-linecap="round"/><circle cx="17" cy="9" r="2.2" stroke="var(--teal)" stroke-width="1.7"/></svg>
+      </div>
+      <div>
+        <h3>Connect your support network</h3>
+        <p>Give a partner, parent, or carer visibility into how you're doing — only what you choose to share.</p>
+      </div>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="8" r="3" stroke="var(--teal)" stroke-width="1.7"/><circle cx="17" cy="8" r="3" stroke="var(--teal)" stroke-width="1.7"/><circle cx="12" cy="17" r="3" stroke="var(--teal)" stroke-width="1.7"/></svg>
+      </div>
+      <div>
+        <h3>Meet others with the same condition</h3>
+        <p>Find people who already know what a flare feels like, without having to explain it from scratch.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="community wrap" id="community">
+  <div>
+    <h2>You're not the only one charting this.</h2>
+    <p class="lede">Every dot here is someone managing something similar — a condition, a routine, a bad week. Immuna is where those threads start to cross.</p>
+  </div>
+  <svg class="network" viewBox="0 0 460 260" fill="none">
+    <line x1="70" y1="60" x2="180" y2="120" stroke="var(--line)" stroke-width="1.4"/>
+    <line x1="180" y1="120" x2="300" y2="70" stroke="var(--line)" stroke-width="1.4"/>
+    <line x1="180" y1="120" x2="160" y2="210" stroke="var(--line)" stroke-width="1.4"/>
+    <line x1="300" y1="70" x2="380" y2="150" stroke="var(--line)" stroke-width="1.4"/>
+    <line x1="160" y1="210" x2="300" y2="70" stroke="var(--line)" stroke-width="1.4"/>
+    <line x1="380" y1="150" x2="300" y2="210" stroke="var(--line)" stroke-width="1.4"/>
+    <line x1="70" y1="60" x2="60" y2="170" stroke="var(--line)" stroke-width="1.4"/>
+    <line x1="60" y1="170" x2="160" y2="210" stroke="var(--line)" stroke-width="1.4"/>
+
+    <circle cx="70" cy="60" r="7" fill="var(--teal)"/>
+    <circle cx="180" cy="120" r="9" fill="var(--teal)"/>
+    <circle cx="300" cy="70" r="6" fill="var(--tan)" stroke="var(--teal)" stroke-width="1.2"/>
+    <circle cx="160" cy="210" r="7" fill="var(--teal-soft)"/>
+    <circle cx="380" cy="150" r="6" fill="var(--terracotta)"/>
+    <circle cx="60" cy="170" r="5" fill="var(--tan)" stroke="var(--teal)" stroke-width="1.2"/>
+    <circle cx="300" cy="210" r="6" fill="var(--teal-soft)"/>
+  </svg>
+</section>
+
+<footer class="wrap">
+  <div class="footer-row">
+    <div class="footer-links">
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/accessibility-statement">Accessibility Statement</a>
+      <a href="https://www.tiktok.com/@immunauk">TikTok</a>
+    </div>
+    <div class="footer-meta" id="footerMeta">© Immuna</div>
+  </div>
+</footer>
+
+<div id="cookieBanner">
+  <p>We use cookies to run this site and, if you allow it, to understand how it's used. You can accept all cookies or continue with essential-only.</p>
+  <div class="cookie-actions">
+    <button id="cookieEssential" onclick="setCookiePref('essential')">Essential only</button>
+    <button id="cookieAccept" onclick="setCookiePref('all')">Accept all</button>
+  </div>
+</div>
+
+<script>
+  document.getElementById('footerMeta').textContent = '© ' + new Date().getFullYear() + ' Immuna';
+
+  (function(){
+    var pref = null;
+    try{ pref = localStorage.getItem('immuna_cookie_pref'); }catch(e){}
+    if(!pref){
+      document.getElementById('cookieBanner').style.display = 'flex';
+    }
+  })();
+
+  function setCookiePref(pref){
+    try{ localStorage.setItem('immuna_cookie_pref', pref); }catch(e){}
+    document.getElementById('cookieBanner').style.display = 'none';
+    // Hook analytics/marketing scripts here based on `pref` ('all' or 'essential')
+  }
+
+  (function(){
+    var wrap = document.querySelector('.phone-stage-wrap');
+    var stage = document.getElementById('phoneStage');
+    var DESIGN_WIDTH = 820;
+
+    function scaleStage(){
+      if(!wrap || !stage) return;
+      stage.style.transform = 'scale(1)';
+      var available = wrap.clientWidth;
+      var scale = Math.min(1, available / DESIGN_WIDTH);
+      stage.style.transform = 'scale(' + scale + ')';
+      wrap.style.height = (stage.offsetHeight * scale) + 'px';
+    }
+
+    window.addEventListener('resize', scaleStage);
+    window.addEventListener('load', scaleStage);
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(scaleStage);
+    }
+    scaleStage();
+  })();
+</script>
+
+</body>
+</html>
