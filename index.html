@@ -214,6 +214,22 @@
     nav{ display:none; }
   }
 
+  @media (max-width: 700px){
+    .phone-stage-wrap{ overflow: visible; height: auto !important; }
+    .phone-stage{
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      transform: none !important;
+    }
+    .phone{ width: min(88vw, 320px); }
+    .float-card{
+      position: static;
+      width: min(88vw, 320px);
+      margin: 14px auto 0;
+    }
+  }
+
   /* ---------- Divider ---------- */
   .stitch{ height: 1px; background: var(--line); margin: 10px 0 0; }
 
@@ -490,9 +506,15 @@
     var wrap = document.querySelector('.phone-stage-wrap');
     var stage = document.getElementById('phoneStage');
     var DESIGN_WIDTH = 820;
+    var MOBILE_BREAKPOINT = 700;
 
     function scaleStage(){
       if(!wrap || !stage) return;
+      if(window.innerWidth <= MOBILE_BREAKPOINT){
+        stage.style.transform = '';
+        wrap.style.height = '';
+        return;
+      }
       stage.style.transform = 'scale(1)';
       var available = wrap.clientWidth;
       var scale = Math.min(1, available / DESIGN_WIDTH);
