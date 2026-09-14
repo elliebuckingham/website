@@ -248,6 +248,22 @@
   .network{ width: 100%; height: auto; }
   @media (max-width: 780px){ .community{ grid-template-columns: 1fr; } }
 
+  .about{ padding: 0 0 90px; }
+  .about-inner{ max-width: 640px; margin: 0 auto; }
+  .about h2{ font-size: clamp(26px, 3vw, 34px); margin-bottom: 26px; text-align:center; }
+  .about p{ color: var(--ink); font-size: 16px; line-height: 1.75; margin: 0 0 20px; }
+  .about .closing{
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--terracotta-deep);
+    font-size: 19px;
+    line-height: 1.5;
+    margin: 30px 0 22px;
+  }
+  .about .signature{ font-family:'Playfair Display', serif; font-weight:600; color: var(--teal); font-size: 15px; }
+  .about .signature span{ display:block; font-family:'Inter', sans-serif; font-weight:400; color: var(--muted); font-size: 13px; margin-top:2px; }
+
   footer{ border-top: 1px solid var(--line); padding: 30px 0 90px; }
   .footer-row{ display:flex; justify-content: space-between; align-items:center; flex-wrap: wrap; gap: 14px; }
   .footer-links a{ color: var(--muted); text-decoration:none; font-size: 13.5px; margin-right: 22px; }
@@ -285,6 +301,9 @@
 <header class="wrap">
   <div class="header-row">
     <div class="wordmark">Immuna</div>
+    <nav>
+      <a href="#about">About</a>
+    </nav>
   </div>
 </header>
 
@@ -449,6 +468,24 @@
     <circle cx="60" cy="170" r="5" fill="var(--tan)" stroke="var(--teal)" stroke-width="1.2"/>
     <circle cx="300" cy="210" r="6" fill="var(--teal-soft)"/>
   </svg>
+</section>
+
+<section class="about wrap" id="about">
+  <div class="about-inner">
+    <h2>Why I'm Building Immuna</h2>
+
+    <p>I started building Immuna because I know first-hand how overwhelming life with an autoimmune disease can feel. I was diagnosed with Juvenile Idiopathic Arthritis at 16, and my life changed almost overnight. I went from playing the sports I loved to being unable to walk for three months, while suddenly having to understand medication, hospital appointments, symptoms and flare-ups.</p>
+
+    <p>What I found hardest was not only the condition itself, but everything that came with it. I felt overwhelmed, isolated and unsure of how to manage a life that had suddenly become centred around my health.</p>
+
+    <p>As I got older, I realised that many of these challenges are shared by people with autoimmune diseases, yet there isn't one place designed around the real-life experience of managing them. Immuna is my answer to that.</p>
+
+    <p>I want to build the platform I wish I had at 16 — a place where people can better understand their health, stay organised, prepare for appointments and feel connected and supported, without feeling like a patient.</p>
+
+    <div class="closing">"I can't change someone's diagnosis, but I believe I can change how they experience it."</div>
+
+    <div class="signature">Eloise Buckingham<span>Founder, Immuna</span></div>
+  </div>
 </section>
 
 <footer class="wrap">
